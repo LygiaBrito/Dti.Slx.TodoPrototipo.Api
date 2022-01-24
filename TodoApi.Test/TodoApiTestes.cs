@@ -12,7 +12,7 @@ namespace TodoApi.Test
         {
             //Objetos instanciados para que fossem acessados localmente.
             var todo = new Todo();
-            var todoItem = new TodoItem()
+            var todoItem = new TodoItemEntiddade()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -39,7 +39,7 @@ namespace TodoApi.Test
         {
             //Objetos instanciados para que fossem acessados localmente.
             var todo = new Todo();
-            var todoItem = new TodoItem()
+            var todoItem = new TodoItemEntiddade()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -50,8 +50,8 @@ namespace TodoApi.Test
             };
             //A variavel isAdded recebe o valor retornado pelo metodo adicionar.
             var isAdded = todo.Adicionar(todoItem);
-            //Comparando se o retorno do metodo adicionar/isAdded e igual a false(primeiro parametro) 
-            Assert.AreEqual(false, isAdded);
+            //Comparando se o retorno do metodo adicionar/isAdded e false
+            Assert.IsFalse(isAdded);
         }
 
 
@@ -61,7 +61,7 @@ namespace TodoApi.Test
         {
             //Objetos instanciados para que fossem acessados localmente.
             var todo = new Todo();
-            var todoItem = new TodoItem()
+            var todoItem = new TodoItemEntiddade()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -72,52 +72,60 @@ namespace TodoApi.Test
             };
             //A variavel isAdded recebe o valor retornado pelo metodo adicionar.
             var isAdded = todo.Adicionar(todoItem);
-            //Comparando se o retorno do metodo adicionar/isAdded é igual a false(primeiro parametro) 
-            Assert.Greater(todoItem.Name.Length, 4);
+            //Comparando se o retorno do metodo adicionar/isAdded e false
+            Assert.IsFalse(isAdded);
+        }
 
+        [Test]
+        public void AcicionarTaskNull()
+        {
+            //Objetos instanciados para que fossem acessados localmente.
+            var todo = new Todo();
+            //A variavel isAdded o valor retornado pelo metodo adicionar.
+            var isAdded = todo.Adicionar(null);
+            //Comparando se o retorno do metodo adicionar/isAdded e igual a false(primeiro parametro) 
+            Assert.AreEqual(false, isAdded);
         }
 
 
+        [Test]
+        public void DuplicarTaskId()
+        {
+            //Objetos instanciados para que fossem acessados localmente.
+            var todo = new Todo();
+            var todoItem = new TodoItemEntiddade()
+            //Parametros para instanciar o objeto todoItem.
+            {
+                DataConclusao = DateTime.Now,
+                Description = "Minha Descrição teste",
+                Id = 1,
+                IsComplete = false,
+                Name = "Teste"
+            };
+            //A variavel isAdded o valor retornado pelo metodo adicionar.
+            var isAdded = todo.Adicionar(todoItem);
 
-        //[Test]
-        //public void AcicionarTaskNull()
-        //{
-        //    //Objetos instanciados para que fossem acessados localmente.
-        //    var todo = new Todo();
-        //    var todoItem = new TodoItem()
-        //    //Parametros para instanciar o objeto todoItem.
-        //    {
-                
-        //    };
-        //    //A variavel isAdded o valor retornado pelo metodo adicionar.
-        //    var isAdded = todo.Adicionar(todoItem);
-        //    //Comparando se o retorno do metodo adicionar/isAdded e igual a false(primeiro parametro) 
-        //    Assert.AreEqual(false, isAdded);
-        //}
-
-
-
-        //[Test]
-        //public void DuplicarTask()
-        //{ 
-        ////Objetos instanciados para que fossem acessados localmente.
-        //var todo = new Todo();
-        //var todoItem = new TodoItem()
-        ////Parametros para instanciar o objeto todoItem.
-        //{
-        //    DataConclusao = DateTime.Now,
-        //    Description = "Minha Descrição teste",
-        //    Id = 1,
-        //    IsComplete = false,
-        //    Name = "Teste"
-        // };
-        ////A variavel isAdded o valor retornado pelo metodo adicionar.
-        //var isAdded = todo.Adicionar(todoItem);
-
-        //todo.Duplicar(long id);
-
-        ////Comparando se o retorno do metodo adicionar/isAdded e igual a false(primeiro parametro) 
-        //Assert.AreEqual(true, DuplicarId);
-        //}
+            bool NovaLista = todo.Duplicar(1);
+            var listaDeTarefas = todo.ListarTodos();
+            //Comparando se o retorno do metodo adicionar/isAdded e igual a false(primeiro parametro) 
+            Assert.AreEqual(2, listaDeTarefas.Count);
+        }
     }
 }
+
+
+
+//using Microsoft.VisualStudio.TestTools.UnitTesting;
+//using TodoApi;
+
+//namespace Testes
+//{
+//    [TestClass]
+//    public class BankAccountTests
+//    {
+//        [TestMethod]
+//        public void TestMethod1()
+//        {
+//        }
+//    }
+//}

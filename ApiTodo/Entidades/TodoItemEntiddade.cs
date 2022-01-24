@@ -2,7 +2,7 @@
 
 namespace ApiTodo.Models
 {
-    public class TodoItem
+    public class TodoItemEntiddade
     {
         public long Id { get; set; }
         public string Name { get; set; }
@@ -10,7 +10,12 @@ namespace ApiTodo.Models
         public bool IsComplete { get; set; }
         public DateTime DataConclusao { get; set; }
 
-        internal void Remove(TodoItem todoItem)
+        internal void Remove(TodoItemEntiddade todoItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal bool IsNullOrEmpty(object text)
         {
             throw new NotImplementedException();
         }

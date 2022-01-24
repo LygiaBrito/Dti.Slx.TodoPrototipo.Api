@@ -7,24 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ApiTodo.Models;
 using TodoApi.Models;
-using static ApiTodo.Models.TodoItem;
+using static ApiTodo.Models.TodoItemEntiddade;
 
 namespace ApiTodo.UseCases
 {
     public class Todo
     {
-        List<TodoItem> TaskList;
+        List<TodoItemEntiddade> TaskList;
 
         //Construtor
         public Todo() 
         {
-            TaskList = new List<TodoItem>();
+            TaskList = new List<TodoItemEntiddade>();
         }
 
         //Metodo Adicionar
-        public bool Adicionar(TodoItem todoItem)
-        {
-            
+        public bool Adicionar(TodoItemEntiddade todoItem)
+        { 
             if (todoItem != null)
             {
                 if (todoItem.Name.Count() >= 5)
@@ -40,20 +39,9 @@ namespace ApiTodo.UseCases
         }
 
         //Metodo Listar Todas as Atividades
-        public List<TodoItem> ListarTodos()
+        public List<TodoItemEntiddade> ListarTodos()
         {
             return TaskList;
-        }
-
-        //Metodo excluir
-        public bool Exluir(TodoItem todoItem)
-        {
-            for (int i = 0; i < todoItem.Id; i++)
-            {
-                TaskList.Remove(todoItem);
-                return true;
-            }
-            return false;
         }
 
         //Metodo  Duplicar

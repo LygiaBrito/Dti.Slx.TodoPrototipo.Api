@@ -20,7 +20,7 @@ namespace TodoApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt =>
+            services.AddDbContext<TodoContextEntidade>(opt =>
                opt.UseInMemoryDatabase("TodoList"));
             services.AddSingleton<Todo>();
             services.AddControllers();
