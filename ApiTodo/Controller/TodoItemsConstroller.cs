@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ApiTodo.Models;
 using TodoApi.Models;
-using ApiTodo.UseCases;
+using ApiTodo.Servicos;
 
 
 namespace ApiTodo.Controller

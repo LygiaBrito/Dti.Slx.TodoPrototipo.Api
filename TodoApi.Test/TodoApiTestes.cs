@@ -1,6 +1,6 @@
 using System;
 using NUnit.Framework;
-using ApiTodo.UseCases;
+using ApiTodo.Servicos;
 using ApiTodo.Models;
 
 namespace TodoApi.Test

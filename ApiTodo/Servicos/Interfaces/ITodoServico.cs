@@ -1,5 +1,4 @@
 ﻿using ApiTodo.Models;
-using System;
 using System.Collections.Generic;
 
 namespace ApiTodo.Servicos

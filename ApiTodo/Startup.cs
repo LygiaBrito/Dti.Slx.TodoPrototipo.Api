@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
-using ApiTodo.UseCases;
+using ApiTodo.Servicos;
 
 namespace TodoApi
 {

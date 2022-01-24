@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ApiTodo.Models;
-using TodoApi.Models;
-using static ApiTodo.Models.TodoItemEntiddade;
 
-namespace ApiTodo.UseCases
+namespace ApiTodo.Servicos
 {
     public class Todo
     {
