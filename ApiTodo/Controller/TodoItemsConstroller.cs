@@ -3,50 +3,62 @@ using Microsoft.AspNetCore.Mvc;
 using ApiTodo.Models;
 using TodoApi.Models;
 using ApiTodo.Servicos;
-
+using Entidades;
 
 namespace ApiTodo.Controller
 {
     [ApiController]
-    [Route("Api/[Controller]")]
+    [Route("Api/v1/[Controller]")]
 
     public class TodoItemsController : ControllerBase
     {
-        private readonly TodoContextEntidade _context;
-        private readonly Todo _service;
+        private readonly TodoContext _context;
+        private readonly ITodoServico TodoServico;
 
-        public TodoItemsController(TodoContextEntidade context, Todo todo)
+        public TodoItemsController(TodoContext context, ITodoServico todoServico)
         {
             _context = context;
-            _service = todo;
+            TodoServico = todoServico;
         }
 
-        [HttpPost("Cadastrar")]
-        public IActionResult Cadastrar([FromBody] TodoItemEntiddade todoItem)
+        [HttpPost("TodoItem")]
+        public IActionResult Cadastrar([FromBody] TodoItem todoItem)
         {
-            var resultado = _service.Adicionar(todoItem);
+            var resultado = TodoServico.Adicionar(todoItem);
             return Ok($"Success: {resultado}");
         }
 
         [HttpGet("Consultar")]
-        public ActionResult<IEnumerable<TodoItemEntiddade>> GetTodoItems()
+        public ActionResult<IEnumerable<TodoItem>> GetTodoItems()
         {
-            var lista = _service.ListarTodos();
+            var lista = TodoServico.ListarTodos();
             return Ok(lista);
         }
 
         [HttpPost("Duplicar/{id}")]
         public IActionResult Duplicar(long id)
         {
-            var resultado = _service.Duplicar(id);
+            var resultado = TodoServico.Duplicar(id);
             return Ok($"Success: {resultado}");
         }
 
         [HttpPut("Concluir/{id}")]
         public IActionResult Concluir(long id)
         {
-            var resultado = _service.Concluir(id);
+            var resultado = TodoServico.Concluir(id);
             return Ok($"Success: {resultado}");
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetResult([FromRoute]long id, [FromQuery] bool isResumo)
+        {
+            return Ok();
+        }
+                   
+            
+          
+        
+
+    
     }
 }

@@ -11,8 +11,8 @@ namespace TodoApi.Test
         public void AdicionarNovaTask() //Este metodo testa o cadastro e listagem por quantidade de itens na lista.
         {
             //Objetos instanciados para que fossem acessados localmente.
-            var todo = new Todo();
-            var todoItem = new TodoItemEntiddade()
+            var todo = new TodoServico();
+            var todoItem = new TodoItem()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -38,8 +38,8 @@ namespace TodoApi.Test
         public void AcicionarTaskComDescricaoMenorQue5()
         {
             //Objetos instanciados para que fossem acessados localmente.
-            var todo = new Todo();
-            var todoItem = new TodoItemEntiddade()
+            var todo = new TodoServico();
+            var todoItem = new TodoItem()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -60,8 +60,8 @@ namespace TodoApi.Test
         public void AcicionarTaskComNameMenorQue5()
         {
             //Objetos instanciados para que fossem acessados localmente.
-            var todo = new Todo();
-            var todoItem = new TodoItemEntiddade()
+            var todo = new TodoServico();
+            var todoItem = new TodoItem()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -80,7 +80,7 @@ namespace TodoApi.Test
         public void AcicionarTaskNull()
         {
             //Objetos instanciados para que fossem acessados localmente.
-            var todo = new Todo();
+            var todo = new TodoServico();
             //A variavel isAdded o valor retornado pelo metodo adicionar.
             var isAdded = todo.Adicionar(null);
             //Comparando se o retorno do metodo adicionar/isAdded e igual a false(primeiro parametro) 
@@ -92,8 +92,8 @@ namespace TodoApi.Test
         public void DuplicarTaskId()
         {
             //Objetos instanciados para que fossem acessados localmente.
-            var todo = new Todo();
-            var todoItem = new TodoItemEntiddade()
+            var todo = new TodoServico();
+            var todoItem = new TodoItem()
             //Parametros para instanciar o objeto todoItem.
             {
                 DataConclusao = DateTime.Now,
@@ -112,20 +112,3 @@ namespace TodoApi.Test
         }
     }
 }
-
-
-
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
-//using TodoApi;
-
-//namespace Testes
-//{
-//    [TestClass]
-//    public class BankAccountTests
-//    {
-//        [TestMethod]
-//        public void TestMethod1()
-//        {
-//        }
-//    }
-//}

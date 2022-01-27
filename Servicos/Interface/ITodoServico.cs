@@ -5,9 +5,9 @@ namespace ApiTodo.Servicos
 {
     public interface ITodoServico
     {
-        public bool Adicionar(TodoItemEntiddade todoItem);
+        public bool Adicionar(TodoItem todoItem);
 
-        public List<TodoItemEntiddade> ListarTodos();
+        public List<TodoItem> ListarTodos();
 
         public bool Duplicar(long id);
 

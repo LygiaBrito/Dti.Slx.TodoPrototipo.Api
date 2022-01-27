@@ -1,22 +1,22 @@
-﻿using System;
+﻿using ApiTodo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ApiTodo.Models;
 
 namespace ApiTodo.Servicos
 {
-    public class Todo
+    public class TodoServico : ITodoServico
     {
-        List<TodoItemEntiddade> TaskList;
+        List<TodoItem> TaskList;
 
         //Construtor
-        public Todo() 
+        public TodoServico()  
         {
-            TaskList = new List<TodoItemEntiddade>();
+            TaskList = new List<TodoItem>();
         }
 
         //Metodo Adicionar
-        public bool Adicionar(TodoItemEntiddade todoItem)
+        public bool Adicionar(TodoItem todoItem)
         { 
             if (todoItem != null)
             {
@@ -33,7 +33,7 @@ namespace ApiTodo.Servicos
         }
 
         //Metodo Listar Todas as Atividades
-        public List<TodoItemEntiddade> ListarTodos()
+        public List<TodoItem> ListarTodos()
         {
             return TaskList;
         }
