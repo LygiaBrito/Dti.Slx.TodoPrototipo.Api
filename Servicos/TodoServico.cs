@@ -54,5 +54,10 @@ namespace ApiTodo.Servicos
             todoItem.IsComplete = true;
             return true;
         }
+
+        public TodoItem Buscar(long id)
+        {
+            return TaskList.Where(x => x.Id.Equals(id)).FirstOrDefault();
+        }
     }
 }

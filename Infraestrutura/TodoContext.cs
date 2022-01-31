@@ -1,17 +1,14 @@
-﻿
-using ApiTodo.Models;
+﻿using ApiTodo.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
-using DbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace TodoApi.Models
+{
+    public class TodoContextEntidade : DbContext
     {
-        public class TodoContext : DbContext
+        public TodoContextEntidade(DbContextOptions<TodoContextEntidade> options)
+            : base(options)
         {
-        public TodoContext(DbContextOptions<TodoContext> options)
-                : base(options)
-            {
-            }
-        public Microsoft.EntityFrameworkCore.DbSet<TodoItem> TodoItems { get; set; }
         }
+        public DbSet<TodoItem> TodoItems { get; set; }
     }
+}

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ApiTodo.Models;
 using TodoApi.Models;
 using ApiTodo.Servicos;
-using Entidades;
+using Spx.Adm.Todo.Adapters.Interfaces;
 
 namespace ApiTodo.Controller
 {
@@ -12,16 +12,19 @@ namespace ApiTodo.Controller
 
     public class TodoItemsController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly TodoContextEntidade _context;
         private readonly ITodoServico TodoServico;
+        private readonly IAdapter TodoAdapter;
+       
 
-        public TodoItemsController(TodoContext context, ITodoServico todoServico)
+        public TodoItemsController(TodoContextEntidade context, ITodoServico todoServico, IAdapter adapter)
         {
             _context = context;
             TodoServico = todoServico;
+            TodoAdapter = adapter;
         }
 
-        [HttpPost("TodoItem")]
+        [HttpPost("Cadastrar")]
         public IActionResult Cadastrar([FromBody] TodoItem todoItem)
         {
             var resultado = TodoServico.Adicionar(todoItem);
@@ -49,16 +52,13 @@ namespace ApiTodo.Controller
             return Ok($"Success: {resultado}");
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetResult([FromRoute]long id, [FromQuery] bool isResumo)
-        {
-            return Ok();
-        }
-                   
-            
-          
         
+        [HttpGet("ObterJson/{id}")]
+        public ActionResult<IEnumerable<TodoItem>> GetObterJson([FromRoute] long id)
+        {
+            var resumo = TodoAdapter.ToJson(id);
+            return Ok(resumo);
+        }
 
-    
     }
 }

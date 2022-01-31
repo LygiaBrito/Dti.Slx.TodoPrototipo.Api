@@ -13,5 +13,7 @@ namespace ApiTodo.Servicos
 
         public bool Concluir(long id);
 
+        public TodoItem Buscar(long id);
+
     }
 }

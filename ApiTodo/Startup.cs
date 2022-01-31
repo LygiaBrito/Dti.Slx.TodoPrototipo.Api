@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using ApiTodo.Servicos;
 using TodoApi.Models;
+using Spx.Adm.Todo.Adapters.Interfaces;
+using Spx.Adm.Todo.Adapters;
 
 namespace TodoApi
 {
@@ -20,10 +22,11 @@ namespace TodoApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TodoContext>(opt =>
+            services.AddDbContext<TodoContextEntidade>(opt =>
                opt.UseInMemoryDatabase("TodoList"));
 
             services.AddSingleton<ITodoServico, TodoServico>();
+            services.AddScoped<IAdapter, TodoAdapter>();
 
             services.AddControllers();
 
