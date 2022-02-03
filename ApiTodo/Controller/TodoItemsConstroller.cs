@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using ApiTodo.Models;
-using TodoApi.Models;
-using ApiTodo.Servicos;
 using Spx.Adm.Todo.Adapters.Interfaces;
+using Spx.Adm.Todo.Items;
+using Spx.Adm.Todo.Servicos.Interfaces;
+using Spx.Adm.TodoContexts;
 
-namespace ApiTodo.Controller
+namespace Spx.Adm.Todo.Controllers
 {
     [ApiController]
     [Route("Api/v1/[Controller]")]
@@ -13,15 +13,13 @@ namespace ApiTodo.Controller
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContextEntidade _context;
-        private readonly ITodoServico TodoServico;
-        private readonly IAdapter TodoAdapter;
-       
+        private readonly ITodoItemsServico TodoServico;
 
-        public TodoItemsController(TodoContextEntidade context, ITodoServico todoServico, IAdapter adapter)
+
+        public TodoItemsController(TodoContextEntidade context, ITodoItemsServico todoServico)
         {
             _context = context;
             TodoServico = todoServico;
-            TodoAdapter = adapter;
         }
 
         [HttpPost("Cadastrar")]
@@ -52,13 +50,12 @@ namespace ApiTodo.Controller
             return Ok($"Success: {resultado}");
         }
 
-        
-        [HttpGet("ObterJson/{id}")]
-        public ActionResult<IEnumerable<TodoItem>> GetObterJson([FromRoute] long id)
-        {
-            var resumo = TodoAdapter.ToJson(id);
-            return Ok(resumo);
-        }
 
+        [HttpGet("ObterJson")]
+        public ActionResult<IEnumerable<TodoItem>> GetTodoAdapters()
+        {
+            var Resumo = TodoServico.Resumo();
+            return Ok(Resumo);
+        }
     }
 }

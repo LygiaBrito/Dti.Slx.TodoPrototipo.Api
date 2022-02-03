@@ -1,7 +1,7 @@
-﻿using ApiTodo.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Spx.Adm.Todo.Items;
 
-namespace TodoApi.Models
+namespace Spx.Adm.TodoContexts
 {
     public class TodoContextEntidade : DbContext
     {

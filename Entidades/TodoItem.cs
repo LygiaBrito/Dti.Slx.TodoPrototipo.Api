@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ApiTodo.Models
+namespace Spx.Adm.Todo.Items
 {
     public class TodoItem
     {

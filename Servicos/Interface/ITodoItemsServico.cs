@@ -1,9 +1,9 @@
-﻿using ApiTodo.Models;
+﻿using Spx.Adm.Todo.Items;
 using System.Collections.Generic;
 
-namespace ApiTodo.Servicos
-{
-    public interface ITodoServico
+namespace Spx.Adm.Todo.Servicos.Interfaces
+{ 
+    public interface ITodoItemsServico
     {
         public bool Adicionar(TodoItem todoItem);
 
@@ -13,7 +13,6 @@ namespace ApiTodo.Servicos
 
         public bool Concluir(long id);
 
-        public TodoItem Buscar(long id);
-
+        public List<string> Resumo();
     }
 }

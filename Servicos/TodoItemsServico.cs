@@ -1,16 +1,18 @@
-﻿using ApiTodo.Models;
+﻿
+using Spx.Adm.Todo.Adapters;
+using Spx.Adm.Todo.Items;
+using Spx.Adm.Todo.Servicos.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ApiTodo.Servicos
+namespace Spx.Adm.Todo.Servicos
 {
-    public class TodoServico : ITodoServico
+    public class TodoItemsServico : ITodoItemsServico
     {
         List<TodoItem> TaskList;
-
         //Construtor
-        public TodoServico()  
+        public TodoItemsServico()  
         {
             TaskList = new List<TodoItem>();
         }
@@ -55,9 +57,18 @@ namespace ApiTodo.Servicos
             return true;
         }
 
-        public TodoItem Buscar(long id)
+        public List<string> Resumo()
         {
-            return TaskList.Where(x => x.Id.Equals(id)).FirstOrDefault();
+            //var list = this.TaskList.Select(task => JsonConvert.SerializeObject(task)).ToList();
+            List<string> adapterList = new List<string>();
+            foreach (TodoItem item in TaskList)
+            {
+                var adapter = new TodoAdapter(item.Id, item.Name, item.Description, item.IsComplete);
+                adapter.Adapt();
+                adapterList.Add(adapter.ToJson());
+            }
+            return adapterList; 
         }
     }
 }
+

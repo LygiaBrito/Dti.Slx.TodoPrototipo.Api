@@ -1,32 +1,37 @@
-﻿using ApiTodo.Models;
-using ApiTodo.Servicos;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Spx.Adm.Todo.Adapters.Interfaces;
-namespace Spx.Adm.Todo.Adapters 
+using Spx.Adm.Todo.Items;
+
+namespace Spx.Adm.Todo.Adapters
 {
-    public class TodoAdapter : IAdapter
 
+    public class TodoAdapter : TodoItem, IAdapter
     {
-        private string _todoJson;
-        private ITodoServico todoServico;
+        private string _todoJson { get; set; }
 
-        public TodoAdapter(ITodoServico todoServico)
+
+        public TodoAdapter(long id, string name, string description, bool isComplete)
         {
-            this.todoServico = todoServico;
+            this.Id = id;
+            this.Name = name;
+            this.Description = description;
+            this.IsComplete = isComplete;
         }
 
-        public string ToJson(long id)
+        public void Adapt()
         {
-            TodoItem tudoItemBusca = todoServico.Buscar(id);
             
-            this._todoJson = $" {id}, {tudoItemBusca.Name}, {tudoItemBusca.Description}, {tudoItemBusca.IsComplete}";
+            this._todoJson = $" {this.Id}, {this.Name}, {this.Description}, {this.IsComplete}";
+        }
+
+        public string ToJson()
+        {
             var objeto = new
             {
                 json = this._todoJson
             };
-            
+
             return JsonConvert.SerializeObject(objeto);
         }
-
     }
 }
