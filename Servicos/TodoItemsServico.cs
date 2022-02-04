@@ -59,12 +59,10 @@ namespace Spx.Adm.Todo.Servicos
 
         public List<string> Resumo()
         {
-            //var list = this.TaskList.Select(task => JsonConvert.SerializeObject(task)).ToList();
             List<string> adapterList = new List<string>();
             foreach (TodoItem item in TaskList)
             {
                 var adapter = new TodoAdapter(item.Id, item.Name, item.Description, item.IsComplete);
-                adapter.Adapt();
                 adapterList.Add(adapter.ToJson());
             }
             return adapterList; 

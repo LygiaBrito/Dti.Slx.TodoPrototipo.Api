@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Spx.Adm.Todo.Adapters.Interfaces;
 using Spx.Adm.Todo.Items;
 using Spx.Adm.Todo.Servicos.Interfaces;
 using Spx.Adm.TodoContexts;
