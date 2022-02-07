@@ -5,33 +5,29 @@ using Spx.Adm.Todo.Servicos.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TodoApi.Validators;
 
 namespace Spx.Adm.Todo.Servicos
 {
-    public class TodoItemsServico : ITodoItemsServico
+    public class TodoServico : ITodoItemsServico
     {
         List<TodoItem> TaskList;
         //Construtor
-        public TodoItemsServico()  
+        public TodoServico()  
         {
             TaskList = new List<TodoItem>();
         }
 
         //Metodo Adicionar
         public bool Adicionar(TodoItem todoItem)
-        { 
-            if (todoItem != null)
+        {
+            var ValidarAdicionar = new TodoItemValidator();
+            var resultado = ValidarAdicionar.Validate(todoItem);
+            if(resultado.IsValid)
             {
-                if (todoItem.Name.Count() >= 5)
-                {
-                    if (todoItem.Description.Count() >= 5)
-                    {
-                        TaskList.Add(todoItem);
-                        return true;
-                    }
-                }
+                TaskList.Add(todoItem);
             }
-            return false;
+            return resultado.IsValid;
         }
 
         //Metodo Listar Todas as Atividades

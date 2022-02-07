@@ -6,9 +6,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Spx.Adm.TodoContexts;
 using Spx.Adm.Todo.Servicos;
-using Spx.Adm.Todo.Adapters.Interfaces;
-using Spx.Adm.Todo.Adapters;
 using Spx.Adm.Todo.Servicos.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using FluentValidation.AspNetCore;
 
 namespace TodoApi
 {
@@ -26,9 +27,18 @@ namespace TodoApi
             services.AddDbContext<TodoContextEntidade>(opt =>
                opt.UseInMemoryDatabase("TodoList"));
 
-            services.AddSingleton<ITodoItemsServico, TodoItemsServico>();
+            services.AddSingleton<ITodoItemsServico, TodoServico>();
             services.AddControllers();
+            services.AddMvc()
+                .AddFluentValidation(fvc =>
+                            fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
+            // Add framework services.
+            services.AddMvc();
+        }
 
+        private void FluentValidation(MvcOptions obj)
+        {
+            throw new NotImplementedException();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
