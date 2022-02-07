@@ -1,14 +1,24 @@
 using System;
 using NUnit.Framework;
-using Spx.Adm.Todo.Adapters;
-using Newtonsoft.Json;
 using Spx.Adm.Todo.Servicos;
 using Spx.Adm.Todo.Items;
+using System.ComponentModel.DataAnnotations;
+using TodoApi.Validators;
+using FluentValidation.TestHelper;
 
 namespace Spx.Adm.TodoApi.Tests
 {
     public class Tests
     {
+        
+
+        //[Test]
+        //public void VerificarSeTemMaisQue4Caracter()
+        //{
+        //    validator.ShouldNotHaveValidationErrorFor(TodoItem => TodoItem.Name, "Hamilton Vale");
+        //}
+
+
         [Test]
         public void AdicionarNovaTask() //Este metodo testa o cadastro e listagem por quantidade de itens na lista.
         {
@@ -33,7 +43,6 @@ namespace Spx.Adm.TodoApi.Tests
             //Compara se o campo esperado(de descricao) e igual a da lista, representada pela variavel listaDeTarefas(consta tambem a posicao na lista
             Assert.AreEqual("Minha Descrição teste", listaDeTarefas[0].Description);
         }
-
 
 
         [Test]
