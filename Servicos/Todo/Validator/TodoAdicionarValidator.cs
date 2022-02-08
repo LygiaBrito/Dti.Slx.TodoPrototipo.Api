@@ -7,9 +7,7 @@ namespace Spx.Adm.Todo.Validators
     {
         public TodoAdicionarValidator()
         {
-            RuleFor(m => m.Id)
-                .NotEmpty()
-                    .WithMessage("O campo Id, nao pode ser vazio.");
+            
 
             RuleFor(m => m.Name)
                 .NotEmpty()
